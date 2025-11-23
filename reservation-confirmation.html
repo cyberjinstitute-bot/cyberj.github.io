@@ -1,0 +1,205 @@
+<!doctype html>
+<html class="no-js" lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Réservation confirmée - Votre Entreprise</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="header-left">
+        <a class="logo" href="index.html" aria-label="Accueil">
+          <img src="img/CyberJ.svg" alt="CyberJ Logo" width="32" height="32" class="logo-icon">
+          <img src="img/CyberJ Text.svg" alt="CyberJ" class="logo-text">
+        </a>
+      </div>
+
+      <nav class="header-nav" role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="zone-intervention.html">Zone d'intervention</a></li>
+          <li><a href="tarifs.html">Tarifs</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="reservation.html">Réservation</a></li>
+          <li><a href="apropos.html">À Propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <a class="phone" href="tel:+33123456789">+33 1 23 45 67 89</a>
+        <a class="btn-reserve" href="reservation.html">RÉSERVER</a>
+      </div>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Ouvrir le menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="confirmation-hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <h1 class="hero-title success">✓ Réservation Confirmée !</h1>
+          <p class="hero-lead">Merci — votre rendez-vous a bien été pris en compte.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="confirmation-details">
+      <div class="container">
+        <div class="confirm-box">
+          <h3>Votre rendez-vous</h3>
+          <p class="muted" id="conf-service">—</p>
+          <p id="conf-datetime">—</p>
+          <p id="conf-location">—</p>
+
+          <p class="muted">Un email de confirmation vous a été envoyé.</p>
+          <p class="muted">Vous recevrez un rappel 24h avant.</p>
+
+          <div class="confirm-actions">
+            <button id="add-calendar" class="btn btn-primary">Ajouter au Calendrier</button>
+            <a class="btn" href="index.html">Retour à l'Accueil</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+  // Read booking from sessionStorage and populate page
+  document.addEventListener('DOMContentLoaded', function(){
+    var raw = null;
+    try { raw = sessionStorage.getItem('lastBooking'); } catch (e) { raw = null; }
+    var booking = raw ? JSON.parse(raw) : null;
+
+    var svc = booking && booking.service ? booking.service : '—';
+    var datetime = booking && booking.datetime ? booking.datetime : '—';
+    var location = booking && booking.location ? booking.location : '—';
+
+    document.getElementById('conf-service').textContent = svc;
+    document.getElementById('conf-datetime').textContent = datetime;
+    document.getElementById('conf-location').textContent = location;
+
+    // Add to calendar: create ICS
+    function buildICS(title, desc, startDateTime, durationMinutes, loc) {
+      // startDateTime expected like 'YYYY-MM-DD à HH:MM' or ISO
+      var dtParts = startDateTime.split('à');
+      var date = dtParts[0] ? dtParts[0].trim() : '';
+      var time = dtParts[1] ? dtParts[1].trim() : '09:00';
+
+      // build naive local datetime
+      var ymd = date.replace(/-/g,'');
+      var hm = time.replace(':','') + '00';
+      var dtstart = ymd + 'T' + hm;
+
+      // compute dtend by adding duration (simple)
+      var parts = date.split('-');
+      var hhmm = time.split(':');
+      var dObj = new Date(parts[0], parseInt(parts[1],10)-1, parts[2], parseInt(hhmm[0],10), parseInt(hhmm[1],10));
+      var dEnd = new Date(dObj.getTime() + durationMinutes*60000);
+      function pad(n){ return (n<10? '0'+n : n); }
+      var dtend = '' + dEnd.getFullYear() + pad(dEnd.getMonth()+1) + pad(dEnd.getDate()) + 'T' + pad(dEnd.getHours()) + pad(dEnd.getMinutes()) + '00';
+
+      var uid = 'booking-' + Date.now() + '@votre-entreprise';
+      var now = new Date();
+      var dtstamp = '' + now.getFullYear() + pad(now.getMonth()+1) + pad(now.getDate()) + 'T' + pad(now.getHours()) + pad(now.getMinutes()) + pad(now.getSeconds()) + 'Z';
+
+      var lines = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Votre Entreprise//Reservation//FR',
+        'CALSCALE:GREGORIAN',
+        'BEGIN:VEVENT',
+        'UID:' + uid,
+        'DTSTAMP:' + dtstamp,
+        'DTSTART:' + dtstart,
+        'DTEND:' + dtend,
+        'SUMMARY:' + (title || 'Rendez-vous'),
+        'DESCRIPTION:' + (desc || ''),
+        'LOCATION:' + (loc || ''),
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ];
+      return lines.join('\r\n');
+    }
+
+    document.getElementById('add-calendar').addEventListener('click', function(){
+      var title = svc;
+      var desc = 'Réservation via Votre Entreprise';
+      var start = datetime; // 'YYYY-MM-DD à HH:MM'
+      var ics = buildICS(title, desc, start, 60, location);
+      var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'reservation.ics';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 10000);
+    });
+
+  });
+  </script>
+
+  <footer class="site-footer">
+    <div class="footer-top container">
+      <div class="footer-col footer-about">
+        <h4>Votre Entreprise</h4>
+        <p class="footer-desc">Réparation informatique à domicile et en atelier — rapide et fiable.</p>
+        <p class="footer-siret">SIRET: <strong>[Votre SIRET]</strong></p>
+      </div>
+
+      <div class="footer-col footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+          <li><a href="#reservation">Réservation</a></li>
+          <li><a href="#apropos">À Propos</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-contact">
+        <h4>Contact</h4>
+        <p class="footer-phone">Téléphone: <a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+        <p class="footer-email">Email: <a href="mailto:contact@votreentreprise.fr">contact@votreentreprise.fr</a></p>
+        <p class="footer-address">Adresse: <span>[Votre adresse]</span></p>
+        <p class="footer-area">Zone: <span>Votre Ville &amp; alentours</span></p>
+      </div>
+
+      <div class="footer-col footer-hours">
+        <h4>Horaires</h4>
+        <p>Monday-Friday: 9h-19h</p>
+        <p>Saturday: 10h-18h</p>
+        <p>Sunday: Sur rendez-vous</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <div class="footer-left">© 2025 <strong>[Votre Business]</strong> - Tous droits réservés</div>
+        <div class="footer-center">
+          <a href="mentions-legales.html">Mentions Légales</a>
+          <span class="sep">|</span>
+          <a href="politique-confidentialite.html">Politique de Confidentialité</a>
+          <span class="sep">|</span>
+          <a href="cgv.html">CGV</a>
+        </div>
+        <div class="footer-right">
+          <a class="social" href="https://facebook.com/votreentreprise" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          <a class="social" href="https://instagram.com/votreentreprise" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a class="social" href="https://twitter.com/votreentreprise" target="_blank" rel="noopener" aria-label="Twitter">X</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

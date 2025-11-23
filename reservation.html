@@ -1,0 +1,383 @@
+<!doctype html>
+<html class="no-js" lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Réservation - Votre Entreprise</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="header-left">
+        <a class="logo" href="index.html" aria-label="Accueil">
+          <img src="img/CyberJ.svg" alt="CyberJ Logo" width="32" height="32" class="logo-icon">
+          <img src="img/CyberJ Text.svg" alt="CyberJ" class="logo-text">
+        </a>
+      </div>
+
+      <nav class="header-nav" role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="zone-intervention.html">Zone d'intervention</a></li>
+          <li><a href="tarifs.html">Tarifs</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="reservation.html">Réservation</a></li>
+          <li><a href="apropos.html">À Propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <a class="phone" href="tel:+33123456789">+33 1 23 45 67 89</a>
+        <a class="btn-reserve" href="reservation.html">RÉSERVER</a>
+      </div>
+
+      <button class="nav-toggle" aria-expanded="false" aria-label="Ouvrir le menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero-booking">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <h1 class="hero-title">Réservez Votre Intervention</h1>
+          <p class="hero-lead">Choisissez votre service et votre créneau</p>
+
+          <ul class="booking-features">
+            <li>⚡ Réponse rapide</li>
+            <li>📅 Choix des horaires</li>
+            <li>✓ Confirmation immédiate</li>
+          </ul>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#booking-system">Ouvrir le calendrier</a>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <img src="img/hero-placeholder.jpg" alt="Réservez votre intervention" />
+        </div>
+      </div>
+    </section>
+
+    <section id="booking-system" class="booking-system">
+      <div class="container">
+        <h2 class="section-title">Système de réservation</h2>
+        <p class="muted">Intégration Calendly / Amelia — espace réservé pour le widget.</p>
+
+        <div class="booking-placeholder">
+          <div class="placeholder-box">
+            <p><strong>Ici se trouve l'intégration Calendly ou Amelia.</strong></p>
+            <p class="muted">Collez le code du widget ou activez le plugin côté serveur.</p>
+          </div>
+        </div>
+
+        <h3 class="section-subtitle">Choisissez un service</h3>
+
+        <div class="services-grid">
+          <!-- service card template -->
+
+          <article class="service-card" data-service="logiciel">
+            <header>
+              <button class="service-toggle" aria-expanded="false" aria-controls="svc-logiciel">🖥️ Dépannage Logiciel</button>
+            </header>
+            <div id="svc-logiciel" class="service-options" aria-hidden="true">
+              <ul>
+                <li><strong>Nettoyage virus</strong> — 40-70€</li>
+                <li><strong>Réinstall Windows</strong> — 50-80€</li>
+                <li><strong>Récup données</strong> — 60-100€</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service-card" data-service="materiel">
+            <header>
+              <button class="service-toggle" aria-expanded="false" aria-controls="svc-materiel">🔧 Réparation Matériel</button>
+            </header>
+            <div id="svc-materiel" class="service-options" aria-hidden="true">
+              <ul>
+                <li><strong>Écran portable</strong> — 80-150€ + pièce</li>
+                <li><strong>Batterie</strong> — 40-70€ + pièce</li>
+                <li><strong>Clavier</strong> — 60-100€ + pièce</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service-card" data-service="montage">
+            <header>
+              <button class="service-toggle" aria-expanded="false" aria-controls="svc-montage">💻 Montage PC</button>
+            </header>
+            <div id="svc-montage" class="service-options" aria-hidden="true">
+              <ul>
+                <li><strong>Montage complet</strong> — 100-200€ + pièces</li>
+                <li><strong>Upgrade CPU/GPU</strong> — 50-90€</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service-card" data-service="reseau">
+            <header>
+              <button class="service-toggle" aria-expanded="false" aria-controls="svc-reseau">🌐 Réseau & Internet</button>
+            </header>
+            <div id="svc-reseau" class="service-options" aria-hidden="true">
+              <ul>
+                <li><strong>Installation box</strong> — 40-80€</li>
+                <li><strong>Diagnostic réseau</strong> — 30-60€</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service-card" data-service="formation">
+            <header>
+              <button class="service-toggle" aria-expanded="false" aria-controls="svc-formation">🎓 Formation</button>
+            </header>
+            <div id="svc-formation" class="service-options" aria-hidden="true">
+              <ul>
+                <li><strong>Session 1h</strong> — 40-50€</li>
+                <li><strong>Pack 5 sessions</strong> — 180€</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service-card" data-service="autre">
+            <header>
+              <button class="service-toggle" aria-expanded="false" aria-controls="svc-autre">❓ Autre / Conseil</button>
+            </header>
+            <div id="svc-autre" class="service-options" aria-hidden="true">
+              <ul>
+                <li><strong>Conseil</strong> — Devis sur demande</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- STEP 2: Choose Location -->
+        <section class="booking-location">
+          <h3 class="section-subtitle">Étape 2 — Choisissez le lieu</h3>
+          <form class="location-form" aria-label="Choix du lieu">
+            <fieldset class="location-options">
+              <legend class="visually-hidden">Choisissez le lieu d'intervention</legend>
+              <label class="location-option">
+                <input type="radio" name="location" value="domicile" checked>
+                À mon domicile <span class="muted">(+0€ ou +10€ selon zone)</span>
+              </label>
+              <label class="location-option">
+                <input type="radio" name="location" value="atelier">
+                À l'atelier <span class="muted">(Adresse: 12 Rue Exemple, Votre Ville)</span>
+              </label>
+              <label class="location-option">
+                <input type="radio" name="location" value="online">
+                En ligne <span class="muted">(formation seulement)</span>
+              </label>
+            </fieldset>
+            <div class="location-note muted" aria-live="polite">Choisissez votre option de lieu.</div>
+          </form>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- STEP 3: Choose Date & Time -->
+    <section class="booking-datetime">
+      <div class="container">
+        <h3 class="section-subtitle">Étape 3 — Choisissez la date & l'heure</h3>
+
+        <div class="calendar-wrap">
+          <div class="calendar" role="grid" aria-label="Sélecteur de date"></div>
+
+          <div class="timeslots">
+            <h4 class="muted">Sélectionnez une date pour voir les créneaux</h4>
+            <div class="slots" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="booking-summary muted" aria-live="polite">Aucun créneau sélectionné.</div>
+      </div>
+    </section>
+
+    <!-- STEP 4: Your Information -->
+    <section class="booking-info">
+      <div class="container">
+        <h3 class="section-subtitle">Étape 4 — Vos informations</h3>
+
+        <form id="booking-form" class="booking-form" novalidate aria-labelledby="booking-form-title">
+          <p id="booking-form-title" class="visually-hidden">Formulaire de réservation</p>
+
+          <div class="form-grid">
+            <label for="nom">Nom *</label>
+            <input id="nom" name="nom" type="text" required aria-required="true" />
+
+            <label for="prenom">Prénom *</label>
+            <input id="prenom" name="prenom" type="text" required aria-required="true" />
+
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" required aria-required="true" />
+
+            <label for="tel">Téléphone *</label>
+            <input id="tel" name="tel" type="tel" required aria-required="true" />
+
+            <div class="address-field">
+              <label for="adresse">Adresse (si À mon domicile)</label>
+              <input id="adresse" name="adresse" type="text" />
+            </div>
+
+            <label for="description">Description du problème</label>
+            <textarea id="description" name="description" rows="4" placeholder="Décrivez le problème ou la demande..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Suivant — Résumé</button>
+            <div class="form-error visually-hidden" role="alert" aria-live="assertive"></div>
+          </div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- STEP 5: Confirmation -->
+    <section class="booking-confirmation visually-hidden" aria-labelledby="confirm-heading">
+      <div class="container">
+        <h3 id="confirm-heading" class="section-subtitle">Étape 5 — Confirmation</h3>
+
+        <div class="confirm-box">
+          <h4>Récapitulatif</h4>
+          <ul class="confirm-list">
+            <li><strong>Service choisi:</strong> <span id="summary-service">—</span></li>
+            <li><strong>Date et heure:</strong> <span id="summary-datetime">—</span></li>
+            <li><strong>Lieu:</strong> <span id="summary-location">—</span></li>
+            <li><strong>Prix estimé:</strong> <span id="summary-price">—</span></li>
+            <li><strong>Vos coordonnées:</strong> <span id="summary-contact">—</span></li>
+          </ul>
+
+          <form class="confirm-form" aria-label="Confirmation de réservation">
+            <label class="confirm-checkbox"><input type="checkbox" id="accept-cgv"> J'accepte les CGV</label>
+            <label class="confirm-checkbox"><input type="checkbox" id="subscribe-offers"> Je souhaite recevoir les offres par email</label>
+
+            <div class="confirm-actions">
+              <button type="button" id="edit-booking" class="btn">Modifier</button>
+              <button type="button" id="confirm-booking-button" class="btn btn-primary">CONFIRMER LA RÉSERVATION</button>
+            </div>
+
+            <div id="confirm-error" class="form-error visually-hidden" role="alert" aria-live="assertive"></div>
+            <div id="confirm-success" class="visually-hidden" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Alternative: Contact Booking (simple form) -->
+  <section id="contact-booking" class="contact-booking">
+    <div class="container">
+      <h2 class="section-title">Réservation par contact</h2>
+      <p class="muted">Si vous préférez qu'on vous contacte pour confirmer, remplissez ce formulaire. Nous vous recontacterons sous 2h.</p>
+
+      <form id="contact-booking-form" class="contact-booking-form" novalidate>
+        <label for="cb-service">Service souhaité</label>
+        <select id="cb-service" name="service" required>
+          <option value="">— Choisissez —</option>
+          <option>🖥️ Dépannage Logiciel</option>
+          <option>🔧 Réparation Matériel</option>
+          <option>💻 Montage PC</option>
+          <option>🌐 Réseau & Internet</option>
+          <option>🎓 Formation</option>
+          <option>❓ Autre / Conseil</option>
+        </select>
+
+        <label for="cb-date">Date souhaitée</label>
+        <input id="cb-date" name="date" type="date">
+
+        <fieldset class="cb-pref">
+          <legend>Horaire préféré</legend>
+          <label><input type="radio" name="pref-time" value="matin"> Matin</label>
+          <label><input type="radio" name="pref-time" value="apres-midi"> Après-midi</label>
+          <label><input type="radio" name="pref-time" value="soir"> Soir</label>
+        </fieldset>
+
+        <label for="cb-message">Votre message</label>
+        <textarea id="cb-message" name="message" rows="4" placeholder="Décrivez votre besoin..."></textarea>
+
+        <div class="cb-contact-grid">
+          <label for="cb-nom">Nom *</label>
+          <input id="cb-nom" name="nom" type="text" required>
+
+          <label for="cb-email">Email *</label>
+          <input id="cb-email" name="email" type="email" required>
+
+          <label for="cb-tel">Téléphone *</label>
+          <input id="cb-tel" name="tel" type="tel" required>
+        </div>
+
+        <div class="cb-actions">
+          <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+          <div id="cb-result" class="muted" aria-live="polite"></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-top container">
+      <div class="footer-col footer-about">
+        <h4>Votre Entreprise</h4>
+        <p class="footer-desc">Réparation informatique à domicile et en atelier — rapide et fiable.</p>
+        <p class="footer-siret">SIRET: <strong>[Votre SIRET]</strong></p>
+      </div>
+
+      <div class="footer-col footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+          <li><a href="#reservation">Réservation</a></li>
+          <li><a href="#apropos">À Propos</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-contact">
+        <h4>Contact</h4>
+        <p class="footer-phone">Téléphone: <a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+        <p class="footer-email">Email: <a href="mailto:contact@votreentreprise.fr">contact@votreentreprise.fr</a></p>
+        <p class="footer-address">Adresse: <span>[Votre adresse]</span></p>
+        <p class="footer-area">Zone: <span>Votre Ville &amp; alentours</span></p>
+      </div>
+
+      <div class="footer-col footer-hours">
+        <h4>Horaires</h4>
+        <p>Monday-Friday: 9h-19h</p>
+        <p>Saturday: 10h-18h</p>
+        <p>Sunday: Sur rendez-vous</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <div class="footer-left">© 2025 <strong>[Votre Business]</strong> - Tous droits réservés</div>
+        <div class="footer-center">
+          <a href="mentions-legales.html">Mentions Légales</a>
+          <span class="sep">|</span>
+          <a href="politique-confidentialite.html">Politique de Confidentialité</a>
+          <span class="sep">|</span>
+          <a href="cgv.html">CGV</a>
+        </div>
+        <div class="footer-right">
+          <a class="social" href="https://facebook.com/votreentreprise" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          <a class="social" href="https://instagram.com/votreentreprise" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a class="social" href="https://twitter.com/votreentreprise" target="_blank" rel="noopener" aria-label="Twitter">X</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
