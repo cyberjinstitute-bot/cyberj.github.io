@@ -484,7 +484,7 @@ body.light-mode .theme-toggle {
 }
 
 .header-left .logo .logo-text {
-  height: 45px;
+  height: 45  px;
   width: auto;
 }
 
@@ -661,6 +661,66 @@ main { padding-top: 90px; background: transparent; color: var(--text-primary); }
   .btn-reserve { padding: 8px 12px; font-size: 0.85rem; }
 }
 
+/* Mobile phones - prevent header clipping */
+@media (max-width: 768px) {
+  .header-left .logo {
+    max-width: none;
+    gap: 6px;
+    margin-right: 12px;
+  }
+  .header-left .logo .logo-icon {
+    width: 50px;
+    height: 50px;
+  }
+  .header-left .logo .logo-text {
+    height: 30px;
+  }
+  .header-right {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+  .header-right .phone {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  .btn-reserve {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+}
+
+/* Very small phones - hide logo text, prioritize functionality */
+@media (max-width: 480px) {
+  .site-header {
+    height: 60px;
+  }
+  main {
+    padding-top: 60px;
+  }
+  .header-left .logo {
+    margin-right: 8px;
+    margin-left: 0;
+  }
+  .header-left .logo .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .header-left .logo .logo-text {
+    display: none;
+  }
+  .header-right .phone {
+    display: none;
+  }
+  .btn-reserve {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+  .header-nav ul {
+    top: 60px;
+  }
+}
+
 /* ==========================
    HERO Section
    ==========================
@@ -777,6 +837,72 @@ main { padding-top: 90px; background: transparent; color: var(--text-primary); }
 @media (max-width: 700px) {
   .services-grid { grid-template-columns: 1fr; }
   .hero-inner { flex-direction: column-reverse; }
+  .hero-title { font-size: 1.6rem; }
+  .hero-lead { font-size: 0.95rem; }
+  .hero-cta { flex-direction: column; gap: 10px; }
+  .hero-cta .btn { width: 100%; text-align: center; }
+}
+
+/* Small mobile phones - optimize for narrow screens */
+@media (max-width: 480px) {
+  .site-header {
+    height: 60px;
+  }
+  main {
+    padding-top: 60px;
+  }
+  .header-left .logo {
+    margin-right: 8px;
+    margin-left: 0;
+  }
+  .header-left .logo .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .header-left .logo .logo-text {
+    display: none;
+  }
+  .header-right .phone {
+    display: none;
+  }
+  .btn-reserve {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+  .header-nav ul {
+    top: 60px;
+  }
+  /* Ensure all buttons are properly sized for touch */
+  .btn {
+    min-height: 44px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  .card-link, .btn-card {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Adjust hero for small screens */
+  .hero-title {
+    font-size: 1.4rem;
+  }
+  .hero-lead {
+    font-size: 0.85rem;
+  }
+  .trust-badges {
+    font-size: 0.85rem;
+  }
+  /* Ensure content has proper padding */
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  /* Make cards more compact */
+  .problem-cards, .services-grid, .reasons-grid {
+    gap: 12px;
+  }
 }
 
 /* Booking date & time picker */
@@ -1142,6 +1268,20 @@ a:focus, button:focus, input:focus, select:focus, textarea:focus {
 
 @media (max-width: 480px) {
   .footer-top { grid-template-columns: 1fr; }
+  .site-footer .container {
+    min-width: 100%;
+    padding: 0 12px;
+  }
+  .footer-center {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .footer-center .sep {
+    display: none;
+  }
+  .footer-right .social {
+    margin: 0 4px;
+  }
 }
 
 
